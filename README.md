@@ -1,22 +1,42 @@
-# SplitSnap
+<p align="center">
+  <img src="docs/logo.svg" alt="SplitSnap logo" width="96">
+</p>
 
-Scan a restaurant bill, let everyone claim what they ate on their own phone, and collect each person's share over UPI.
+<h1 align="center">SplitSnap</h1>
 
-## How it works
+<p align="center">
+  Scan the bill, tap what you ate, pay your friend back.
+</p>
 
-1. The host scans the bill or types it in, sets how many people are splitting, and sends a link.
-2. Guests open the link with no signup and tap what they had. Everyone sees claims update live.
-3. Items can be counted (2 of 6 rotis), shared (3 people, 2 plates), or the whole bill can be split equally.
-4. When everyone has joined and every item is claimed, each person pays by UPI link, QR code or cash.
-5. The host confirms each payment. UPI can't report a person-to-person payment back to the app, so this step is manual.
+<p align="center">
+  <a href="https://splitsnap-wine.vercel.app"><strong>Open the live app</strong></a>
+</p>
 
-SplitSnap also works from the home screen on iPhone and Android.
+<p align="center">
+  <img src="docs/preview.gif" alt="A host and a friend splitting a bill on two phones, from printing the receipt to the Paid stamp" width="800">
+</p>
+
+## What it does
+
+SplitSnap is a mobile-first bill splitter for Indian restaurants. One person scans the bill, everyone claims what they ate on their own phone, and each person pays their exact share.
+
+- **Scan or type the bill.** An open vision model reads the items, and the host can correct anything.
+- **No sign-up.** Friends open a link, enter a name and start tapping.
+- **Live claiming.** Everyone sees claims appear as they happen, and tapping responds instantly.
+- **Split your way.** Count portions (2 of 6 rotis), share plates (3 people, 2 plates), or split the whole bill equally.
+- **Tax handled.** Tax, service charge and discounts are shared in proportion, and shares always add up exactly to the bill.
+- **Pay by UPI or cash.** PhonePe and Paytm open directly with the amount filled in, and GPay works with a personal QR code.
+- **The host stays in control.** Set the headcount, see each person's items, pick items for someone, add a friend with no phone, send each person a bill image, and confirm payments.
+- **Works like an app.** Add it to your iPhone or Android home screen.
+
+UPI can't report a person-to-person payment back to the app, so each person marks themselves paid and the host confirms it.
 
 ## Tech
 
 - **Next.js** (App Router) and **TypeScript**, hosted on **Vercel**
 - **Supabase**: Postgres, anonymous auth, Realtime
 - **Cloudflare Workers AI** with the open Qwen 3.8 vision model to read bills
+- **UPI deep links** and generated QR codes, with no payment gateway
 
 ## Design notes
 
@@ -32,6 +52,7 @@ SplitSnap also works from the home screen on iPhone and Android.
 app/                  Routes, layout, styles and the bill-scanning API
 components/           UI, with the bill screens in components/bill
 hooks/useBill.ts      Bill data, live updates and instant claims
+docs/                 Logo and preview for this README
 lib/                  Split maths, UPI links, QR and receipt images, with tests
 supabase/migrations/  Database schema and functions, in order
 ```
